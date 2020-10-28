@@ -1,19 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, Text, Button } from "react-native";
+import { AppCard } from "../components/ui/AppCard";
+import { THEME } from "../theme";
+import { EditModal } from "../components/EditModal";
 
-export const TodoScreen = ({ goBack, todo }) => {
+export const TodoScreen = ({ goBack, todo, removeTodo }) => {
+  const [modal, setModal] = useState(false);
+
   return (
     <View>
-      <Text>{todo.title}</Text>
+      <EditModal visible={modal} onCancel={() => setModal(false)} />
+      <AppCard style={styles.card}>
+        <Text style={styles.title}>{todo.title}</Text>
+        <Button onPress={() => setModal(true)} title="Ред." />
+      </AppCard>
       <View style={styles.buttons}>
         <View style={styles.button}>
-          <Button color="#757575" title="Назад" onPress={goBack} />
+          <Button color={THEME.GREY_COLOR} title="Назад" onPress={goBack} />
         </View>
         <View style={styles.button}>
           <Button
-            color="#e53935"
+            color={THEME.DANGER_COLOR}
             title="Удалить"
-            onPress={() => console.log("remove")}
+            onPress={() => removeTodo(todo.id)}
           />
         </View>
       </View>
@@ -28,5 +37,12 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "40%",
+  },
+  title: {
+    fontSize: 20,
+  },
+  card: {
+    marginBottom: 20,
+    padding: 15,
   },
 });
