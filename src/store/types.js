@@ -1,1 +1,5 @@
-export const LOAD_POSTS = "LOAD_POSTS";
+export const ActionType = {
+  LOAD_POSTS: "LOAD_POSTS",
+  GETDATAASYNC: "GETDATAASYNC",
+  SETDATA: "SETDATA",
+};
