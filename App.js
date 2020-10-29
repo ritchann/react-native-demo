@@ -4,8 +4,8 @@ import { Navbar } from "./src/components/Navbar";
 import { MainScreen } from "./src/screens/MainScreen";
 import { TodoScreen } from "./src/screens/TodoScreen";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import store from "./src/store";
-import { loadPosts } from "./src/store/actions/post";
+import {store} from "./src/store/index";
+import { getDataAsync, loadPosts } from "./src/store/actions/post";
 
 export default function App() {
   return (
@@ -25,12 +25,14 @@ const AppWrapper = () => {
   const dispatch = useDispatch();
 
   const posts = useSelector((state) => state.post.posts);
+  const data = useSelector((state) => state.post.data);
 
-  useMemo(() => console.log(posts), []);
+  useMemo(() => console.log(data), [data]);
 
   useEffect(() => {
     dispatch(loadPosts(["0"]));
-  }, [loadPosts]);
+    dispatch(getDataAsync());
+  }, [loadPosts, getDataAsync]);
 
   const addTodo = (title) => {
     setTodos((prev) => [

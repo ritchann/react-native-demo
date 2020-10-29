@@ -2,7 +2,7 @@ import { ActionType } from "../types";
 
 const initialState = {
   posts: [],
-  data: any,
+  data: ''
 };
 
 export const postReducer = (state = initialState, action) => {

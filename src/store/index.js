@@ -8,6 +8,5 @@ const rootReducer = combineReducers({ post: postReducer });
 export const rootEpic = combineEpics(epic);
 
 const epicMiddleware = createEpicMiddleware();
+export const store =  createStore(rootReducer, applyMiddleware(epicMiddleware));
 epicMiddleware.run(rootEpic);
-
-export default createStore(rootReducer, applyMiddleware(epicMiddleware));

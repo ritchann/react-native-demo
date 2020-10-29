@@ -1,9 +1,8 @@
 import { ActionsObservable, combineEpics, ofType } from "redux-observable";
 import { from } from "rxjs";
 import { ActionType } from "../types";
-import { addEvent, auth, getEvents } from "./api";
 import { ignoreElements, map, mergeMap } from "rxjs/operators";
-import { getData } from "../api/api";
+import { getData } from '../api/api';
 import { setData } from "../actions/post";
 
 const getDataEpic = (action$) =>
